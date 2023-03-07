@@ -26,4 +26,12 @@ class Array
     end
     self
   end
+
+  def my_select
+    if block_given?
+      results = []
+      my_each {|element| results.push(element) if yield element}
+      results
+    end
+  end
 end
