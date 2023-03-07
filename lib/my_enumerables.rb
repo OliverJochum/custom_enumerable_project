@@ -16,5 +16,14 @@ class Array
     return self
   end
 
-  
+  def my_each_with_index
+    if block_given?
+      i = 0
+      for element in self
+        yield element, i
+        i += 1
+      end
+    end
+    self
+  end
 end
