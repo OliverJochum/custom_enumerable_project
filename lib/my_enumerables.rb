@@ -34,4 +34,16 @@ class Array
       results
     end
   end
+
+  def my_all?(pattern = nil)
+    expr = block_given? ? ->(elem){yield elem} : ->(elem){pattern === elem}
+    my_each{|elem| return false unless expr.call(elem)}
+    true
+  end
+
+  def my_any?(pattern = nil)
+    expr = block_given? ? ->(elem){yield elem} : ->(elem){pattern === elem}
+    my_each{|elem| return true if expr.call(elem)}
+    false
+  end
 end
