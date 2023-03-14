@@ -132,12 +132,20 @@ class Array
           next if initial.nil? && i.zero?
           memo = yield(memo,ele)
         end
+        #if a block is given, cumulatively execute the block for each element
       elsif sym
         my_each_with_index do |ele, i|
           next if initial.nil? && i.zero?
 
           memo = memo.send(sym, ele)
         end
+        # if instead a symbol was given, cumulatively send the symbol and the element to memo
+        # example: sym = '+', array = [5,10,15,20]
+        # first iteration: 
+        # memo = 5
+        # second iteration: memo is sent + and 10
+        # memo = 15
+        # and so on
       end
 
       memo
